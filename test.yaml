@@ -1,0 +1,31 @@
+apiVersion: orchest.io/v1alpha1
+kind: OrchestComponent
+metadata:
+  labels:
+    controller.orchest.io/component: nginx
+    controller.orchest.io/part-of: orchest
+  name: nginx
+  namespace: orchest
+spec:
+  template:
+    env:
+    - name: CONTAINER_RUNTIME
+      value: containerd
+    - name: CONTAINER_RUNTIME_IMAGE
+      value: docker.io/orchest/image-puller:v2023.04.2
+    - name: CONTAINER_RUNTIME_SOCKET
+      value: /run/containerd/containerd.sock
+    - name: FLASK_ENV
+      value: production
+    - name: K8S_DISTRO
+    - name: ORCHEST_CLUSTER
+      value: cluster-1
+    - name: ORCHEST_HOST_GID
+      value: "1"
+    - name: ORCHEST_LOG_LEVEL
+      value: INFO
+    - name: ORCHEST_NAMESPACE
+      value: orchest
+    - name: PYTHONUNBUFFERED
+      value: "TRUE"
+    image: nginx:latest
